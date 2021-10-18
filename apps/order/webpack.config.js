@@ -27,7 +27,7 @@ sharedMappings.register(
 
 module.exports = {
   output: {
-    uniqueName: 'shell',
+    uniqueName: 'order',
     publicPath: 'auto',
   },
   optimization: {
@@ -41,10 +41,10 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      remotes: {
-        locations: 'locations@http://localhost:4201/remoteEntry.js',
-        menu: 'menu@http://localhost:4202/remoteEntry.js',
-        order: 'order@http://localhost:4203/remoteEntry.js',
+      name: 'order',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Module': 'apps/order/src/app/remote-entry/entry.module.ts',
       },
       shared: {
         '@angular/core': { singleton: true, strictVersion: true },

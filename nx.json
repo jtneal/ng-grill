@@ -41,6 +41,13 @@
       "tags": [],
       "implicitDependencies": ["menu"]
     },
+    "order": {
+      "tags": []
+    },
+    "order-e2e": {
+      "tags": [],
+      "implicitDependencies": ["order"]
+    },
     "shell": {
       "tags": []
     },

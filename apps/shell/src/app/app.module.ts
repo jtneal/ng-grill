@@ -20,6 +20,11 @@ import { RouterModule } from '@angular/router';
           loadChildren: () =>
             import('menu/Module').then((m) => m.RemoteEntryModule),
         },
+        {
+          path: 'order',
+          loadChildren: () =>
+            import('order/Module').then((m) => m.RemoteEntryModule),
+        },
       ],
       { initialNavigation: 'enabledBlocking' }
     ),

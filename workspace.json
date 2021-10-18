@@ -254,6 +254,131 @@
         }
       }
     },
+    "order": {
+      "projectType": "application",
+      "root": "apps/order",
+      "sourceRoot": "apps/order/src",
+      "prefix": "ng-grill",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/order",
+            "index": "apps/order/src/index.html",
+            "main": "apps/order/src/main.ts",
+            "polyfills": "apps/order/src/polyfills.ts",
+            "tsConfig": "apps/order/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["apps/order/src/favicon.ico", "apps/order/src/assets"],
+            "styles": ["apps/order/src/styles.scss"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/order/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/order/src/environments/environment.ts",
+                  "with": "apps/order/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/order/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@nrwl/angular:webpack-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "order:build:production"
+            },
+            "development": {
+              "browserTarget": "order:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4203
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "order:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/order/src/**/*.ts",
+              "apps/order/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/order"],
+          "options": {
+            "jestConfig": "apps/order/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "order-e2e": {
+      "root": "apps/order-e2e",
+      "sourceRoot": "apps/order-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/order-e2e/cypress.json",
+            "devServerTarget": "order:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "order:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/order-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "shell": {
       "projectType": "application",
       "root": "apps/shell",
@@ -353,6 +478,7 @@
           "executor": "@nrwl/workspace:run-commands",
           "options": {
             "commands": [
+              "nx serve order",
               "nx serve menu",
               "nx serve locations",
               "nx serve shell"
