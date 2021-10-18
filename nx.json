@@ -34,6 +34,13 @@
       "tags": [],
       "implicitDependencies": ["locations"]
     },
+    "menu": {
+      "tags": []
+    },
+    "menu-e2e": {
+      "tags": [],
+      "implicitDependencies": ["menu"]
+    },
     "shell": {
       "tags": []
     },
