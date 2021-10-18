@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'ng-grill-order-entry',
-  template: `<div class="remote-entry">
-    <h2>order's Remote Entry Component</h2>
-  </div>`,
+  template: `
+    <h2>Order</h2>
+    <p>Our online order system is currently undergoing scheduled maintenance.</p>
+  `,
   styles: [
     `
       .remote-entry {
