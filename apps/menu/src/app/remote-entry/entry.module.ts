@@ -5,9 +5,10 @@ import { RouterModule } from '@angular/router';
 import { RemoteEntryComponent } from './entry.component';
 import { BreakfastComponent } from './breakfast/breakfast.component';
 import { LunchComponent } from './lunch/lunch.component';
+import { DinnerComponent } from './dinner/dinner.component';
 
 @NgModule({
-  declarations: [RemoteEntryComponent, BreakfastComponent, LunchComponent],
+  declarations: [RemoteEntryComponent, BreakfastComponent, LunchComponent, DinnerComponent],
   imports: [
     BrowserModule,
     RouterModule.forChild([
