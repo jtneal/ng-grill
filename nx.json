@@ -27,6 +27,13 @@
     ]
   },
   "projects": {
+    "locations": {
+      "tags": []
+    },
+    "locations-e2e": {
+      "tags": [],
+      "implicitDependencies": ["locations"]
+    },
     "shell": {
       "tags": []
     },

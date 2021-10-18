@@ -1,6 +1,134 @@
 {
   "version": 2,
   "projects": {
+    "locations": {
+      "projectType": "application",
+      "root": "apps/locations",
+      "sourceRoot": "apps/locations/src",
+      "prefix": "ng-grill",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:webpack-browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/locations",
+            "index": "apps/locations/src/index.html",
+            "main": "apps/locations/src/main.ts",
+            "polyfills": "apps/locations/src/polyfills.ts",
+            "tsConfig": "apps/locations/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/locations/src/favicon.ico",
+              "apps/locations/src/assets"
+            ],
+            "styles": ["apps/locations/src/styles.scss"],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "apps/locations/webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/locations/src/environments/environment.ts",
+                  "with": "apps/locations/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "customWebpackConfig": {
+                "path": "apps/locations/webpack.prod.config.js"
+              }
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@nrwl/angular:webpack-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "locations:build:production"
+            },
+            "development": {
+              "browserTarget": "locations:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4201
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "locations:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/locations/src/**/*.ts",
+              "apps/locations/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/locations"],
+          "options": {
+            "jestConfig": "apps/locations/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "locations-e2e": {
+      "root": "apps/locations-e2e",
+      "sourceRoot": "apps/locations-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/locations-e2e/cypress.json",
+            "devServerTarget": "locations:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "locations:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/locations-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "shell": {
       "projectType": "application",
       "root": "apps/shell",
@@ -99,7 +227,7 @@
         "serve-mfe": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "commands": ["nx serve shell"]
+            "commands": ["nx serve locations", "nx serve shell"]
           }
         }
       }

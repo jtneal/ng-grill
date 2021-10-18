@@ -27,7 +27,7 @@ sharedMappings.register(
 
 module.exports = {
   output: {
-    uniqueName: 'shell',
+    uniqueName: 'locations',
     publicPath: 'auto',
   },
   optimization: {
@@ -41,8 +41,10 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      remotes: {
-        locations: 'locations@http://localhost:4201/remoteEntry.js',
+      name: 'locations',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './Module': 'apps/locations/src/app/remote-entry/entry.module.ts',
       },
       shared: {
         '@angular/core': { singleton: true, strictVersion: true },
