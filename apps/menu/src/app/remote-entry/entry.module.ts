@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { RemoteEntryComponent } from './entry.component';
+import { BreakfastComponent } from './breakfast/breakfast.component';
 
 @NgModule({
-  declarations: [RemoteEntryComponent],
+  declarations: [RemoteEntryComponent, BreakfastComponent],
   imports: [
     BrowserModule,
     RouterModule.forChild([
